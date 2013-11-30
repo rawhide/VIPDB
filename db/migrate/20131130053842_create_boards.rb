@@ -6,6 +6,7 @@ class CreateBoards < ActiveRecord::Migration
       t.string :name
       t.string :posted_at
       t.string :scraping_id
+      t.string :sid
     
     end
   end

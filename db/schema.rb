@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131130053853) do
     t.string   "name"
     t.string   "posted_at"
     t.string   "scraping_id"
+    t.string   "sid"
   end
 
   create_table "comments", force: true do |t|
