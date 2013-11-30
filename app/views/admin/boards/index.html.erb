@@ -1,0 +1,7 @@
+<div>
+  <% @boards.each do |b|%>
+    <ul> <%= b.title %>
+    <%= link_to "スレ内容", admin_scraping_board_comments_path(b), class: 'btn' %>
+    </ul>
+  <% end %>
+</div>
