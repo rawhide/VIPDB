@@ -24,21 +24,22 @@ class Scraping < ActiveRecord::Base
 
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
 
-      board = Board.find_by(sid: sid) || Board.factory(sid, board_elem)
-      board.save!
+      board = Board.find_by(sid: sid) || Board.factory(self.id, sid, board_elem)
+      board.save! if board.new_record?
 
       cursor = board.comments.count
 
-      board_elem.css('//dl[@class="thread"]').each_with_index do |thread, j|
-        next if j < cursor
+      board_elem.css('//dl[@class="thread"]').each do |thread|
         res_headers = thread.css("dt")
         res_bodies = thread.css("dd")
  
-        res_headers.each do |res_head|
+        res_headers.each_with_index do |res_head, j|
+          next if j < cursor
           comment = Comment.factory board, res_headers[j], res_bodies[j]
           comment.save!
         end
       end
+
       break if limit && i > limit 
     end
   end
