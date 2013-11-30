@@ -7,7 +7,7 @@ class Board < ActiveRecord::Base
   # == 板のエレメントを引数にし
   #    DBにsaveします。
   #
-  def self.factory( sid, scraping_id, element )
+  def self.factory( scraping_id, sid, element )
     new do |board|
       board.scraping_id = scraping_id
       board.sid = sid
