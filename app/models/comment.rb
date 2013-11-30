@@ -10,8 +10,8 @@ class Comment < ActiveRecord::Base
       comment.voice_body = body_element.text
       comment.voice_name = header[1]
       comment.voice_number = header[0].strip
-      comment.voice_id = tmp[2].gsub(/ID:/, "")
-      comment.posted_at = tmp[0].gsub(/\(.\)/, "")
+      comment.voice_id = tmp[2].present? ? tmp[2].gsub(/ID:/, "") : ""
+      comment.posted_at = tmp[0].present? ? tmp[0].gsub(/\(.\)/, "") : ""
     end
   end
 end
