@@ -3,6 +3,9 @@ class CreateScrapings < ActiveRecord::Migration
     create_table :scrapings do |t|
 
       t.timestamps
+      t.string :title
+      t.string :url
+    
     end
   end
 end
