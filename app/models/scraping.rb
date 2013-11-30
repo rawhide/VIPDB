@@ -15,8 +15,7 @@ class Scraping < ActiveRecord::Base
   def execute!
     # 一覧取得
 
-    index = Nokogiri::HTML.parse(open(self.uri).read).each
-    raise index.css('a').inspect
+    index = Nokogiri::HTML.parse(open(self.url).read)
     index.css('a').each do |anchor|
       board = Nokogiri::HTML.parse(open( %(#{absolute_url}#{anchor[:href]}) ).read)
       raise board.inspect
