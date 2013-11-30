@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+[ Scraping, Board, Comment ].each do |klass|
+  klass.delete_all
+end
 
 [
   {title: "test_1", url: "http://hayabusa.2ch.net/news4vip/subback.html"},

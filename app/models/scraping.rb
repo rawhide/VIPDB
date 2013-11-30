@@ -22,7 +22,6 @@ class Scraping < ActiveRecord::Base
       sid = anchor[:href].sub('\/l50','')
       target_uri = %(#{absolute_url}/#{sid})
 
-
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
 
       board = Board.find_by(sid: sid) || Board.factory(sid, board_elem)
