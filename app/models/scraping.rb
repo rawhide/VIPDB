@@ -21,8 +21,8 @@ class Scraping < ActiveRecord::Base
     index.css('a').each do |anchor|
       target_uri = %(#{absolute_url}/#{anchor[:href].sub('\/l50','')})
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
-      board = Board.factory board_elem
 
+      board = Board.factory board_elem
       board.save!
 
       board_elem.css('//dl[@class="thread"]').each_with_index do |thread, i|
@@ -30,8 +30,8 @@ class Scraping < ActiveRecord::Base
         res_bodies = thread.css("dd")
  
         res_headers.each do |res_head|
-          result.push({ title: res_headers[i], body: res_bodies[i] })
           comment = Comment.factory board, res_headers[i], res_bodies[i]
+          comment.save!
         end
       end
     end
