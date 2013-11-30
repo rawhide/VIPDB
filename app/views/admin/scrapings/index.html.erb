@@ -1,0 +1,10 @@
+<hi>スクレイピング一覧</h1>
+<ul>
+<% @scrapings.each do |scraping| %>
+  <li>
+  <%= link_to scraping.title,admin_scraping_boards_path(scraping) %>
+  </li>
+
+<% end %>
+
+</ul>
