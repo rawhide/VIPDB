@@ -21,12 +21,17 @@ class Scraping < ActiveRecord::Base
     index.css('a').each_with_index do |anchor, i|
       sid = anchor[:href].sub('\/l50','')
       target_uri = %(#{absolute_url}/#{sid})
+
+
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
 
       board = Board.find_by(sid: sid) || anchor[:hrefBoard.factory(board_elem)
       board.save!
 
+      cursor = board.comments.count
+
       board_elem.css('//dl[@class="thread"]').each_with_index do |thread, j|
+        next if j < cursor
         res_headers = thread.css("dt")
         res_bodies = thread.css("dd")
  
