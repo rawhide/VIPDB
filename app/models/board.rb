@@ -7,9 +7,9 @@ class Board < ActiveRecord::Base
   # == 板のエレメントを引数にし
   #    DBにsaveします。
   #
-  def self.factory( element )
+  def self.factory( sid, element )
     new do |board|
-
+      board.sid = sid
     end
   end
 

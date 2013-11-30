@@ -5,35 +5,37 @@ class Scraping < ActiveRecord::Base
   has_many :boards
 
   # スクレイピングを実行します
-  def self.invoke
+  def self.invoke(limit)
     all.each do |task|
-      task.execute!
+      task.execute! limit
     end
   end
 
   # スクレイピング処理をここに実装
-  def execute!
+  def execute!(limit)
     # charset取得
     charset = URI.parse(self.url).read.charset
     # 一覧取得
     index = Nokogiri::HTML.parse(open(self.url).read, nil)
 
-    index.css('a').each do |anchor|
-      target_uri = %(#{absolute_url}/#{anchor[:href].sub('\/l50','')})
+    index.css('a').each_with_index do |anchor, i|
+      sid = anchor[:href].sub('\/l50','')
+      target_uri = %(#{absolute_url}/#{sid})
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
 
-      board = Board.factory board_elem
+      board = Board.find_by(sid: sid) || anchor[:hrefBoard.factory(board_elem)
       board.save!
 
-      board_elem.css('//dl[@class="thread"]').each_with_index do |thread, i|
+      board_elem.css('//dl[@class="thread"]').each_with_index do |thread, j|
         res_headers = thread.css("dt")
         res_bodies = thread.css("dd")
  
         res_headers.each do |res_head|
-          comment = Comment.factory board, res_headers[i], res_bodies[i]
+          comment = Comment.factory board, res_headers[j], res_bodies[j]
           comment.save!
         end
       end
+      break if limit && i > limit 
     end
   end
 
