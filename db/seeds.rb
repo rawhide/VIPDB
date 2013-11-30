@@ -23,7 +23,7 @@
     next unless b.save
     t = Time.now
     [
-      {vaice_body: "内容", voice_name: "投稿者1", posted_at: t.to_s, voice_id: ["hoge", "fuga", "moge", "koge"][rand(4)]}
+      {voice_body: "内容", voice_name: "投稿者1", posted_at: t.to_s, voice_id: ["hoge", "fuga", "moge", "koge"][rand(4)]}
     ].each do |comment|
       c = b.comments.build(comment)
       p c.save
