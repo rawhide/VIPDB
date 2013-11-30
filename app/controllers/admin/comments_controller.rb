@@ -1,6 +1,6 @@
-class CommentsController < ApplicationController
+class Admin::CommentsController < ApplicationController
   def index
-    @board = Board.includes(:comments).find(scraping_id: params[:scraping_id])
+    @board = Board.includes(:comments).find(params[:scraping_id])
     @comments = @board.comments
   end
 end
