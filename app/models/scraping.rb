@@ -25,7 +25,7 @@ class Scraping < ActiveRecord::Base
       board_elem = Nokogiri::HTML.parse(open(target_uri).read)
 
       board = Board.find_by(sid: sid) || Board.factory(sid, board_elem)
-      board.save!
+      board.save! if board.new_record?
 
       cursor = board.comments.count
 
@@ -39,6 +39,7 @@ class Scraping < ActiveRecord::Base
           comment.save!
         end
       end
+
       break if limit && i > limit 
     end
   end
