@@ -39,6 +39,7 @@ class Scraping < ActiveRecord::Base
 
   # urlから絶対URLを取得します
   def absolute_url
-    self.url.gsub(/\/subback.html/, "")
+    self.url.gsub(/news4vip\/subback.html/, "test/read.cgi/news4vip")
+    #"http://hayabusa.2ch.net/test/read.cgi/news4vip"
   end
 end

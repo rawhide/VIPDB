@@ -7,7 +7,7 @@ class ScrapingTest < ActiveSupport::TestCase
   end
 
   test "# absolute_url " do
-    assert_equal "http://hayabusa.2ch.net/news4vip", @subject.absolute_url
+    assert_equal "http://hayabusa.2ch.net/test/read.cgi/news4vip", @subject.absolute_url
   end
 
 end
