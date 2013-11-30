@@ -5,6 +5,8 @@ class CreateBoards < ActiveRecord::Migration
       t.timestamps
       t.string :name
       t.string :posted_at
+      t.string :scraping_id
+    
     end
   end
 end

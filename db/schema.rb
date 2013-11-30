@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20131130053853) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "posted_at"
+    t.string   "scraping_id"
   end
 
   create_table "comments", force: true do |t|
