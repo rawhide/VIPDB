@@ -8,7 +8,9 @@ VIPDB::Application.routes.draw do
   end
   
   namespace :user do
-    resources :boards
+    resources :boards do
+      resources :comments
+    end
   end
 
   get "/", to: "top#index"
