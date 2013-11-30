@@ -1,0 +1,11 @@
+<div>
+  <h1><% @board.name %></h1>
+  <% @comments.each do |c| %>
+    <div>
+      <p><%= "#{c.voice_number}   名前： #{c.voice_name} : #{c.posted_at}  ID: #{c.voice_id}" %></p>
+    </div>
+    <div>
+      <p><%= c.voice_body %><p>
+    </div>
+  <% end %>
+</div>
