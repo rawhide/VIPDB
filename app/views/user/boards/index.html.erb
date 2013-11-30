@@ -2,8 +2,8 @@
 <div>
   <h3><%= board.name%></h3>
   <% board.comments.each do |comment| %>
-  <div>
-    <%= comment.voice_number%>: comment 
-  </div>
+  <p><%= comment.voice_number%>:<%= comment.voice_name %>:<%= comment.posted_at %> ID:<%= comment.voice_id %></p>
+  <p><%= comment.voice_body %></p>
+  <% end %>
 <div>
 <% end %>
