@@ -5,7 +5,7 @@ class Scraping < ActiveRecord::Base
   has_many :boards
 
   # スクレイピングを実行します
-  def self.invoke(limit)
+  def self.invoke(limit=10)
     all.each do |task|
       task.execute! limit
     end

@@ -10,7 +10,7 @@ class Board < ActiveRecord::Base
   def self.factory( sid, element )
     new do |board|
       board.sid = sid
+      board.name = element.css("h1").text
     end
   end
-
 end
