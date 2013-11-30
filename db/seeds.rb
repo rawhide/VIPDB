@@ -5,14 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+[ Scraping, Board, Comment ].each do |klass|
+  klass.delete_all
+end
 
 [
-  {title: "test_1", url: "http://hayabusa.2ch.net/news4vip/"},
-  {title: "test_2", url: "http://hayabusa3.2ch.net/mnewsplus/"}
+  {title: "test_1", url: "http://hayabusa.2ch.net/news4vip/subback.html"},
+  {title: "test_2", url: "http://hayabusa3.2ch.net/mnewsplus/subback.html"}
 ].each do |scraping|
-  s = Scraping.new(scraping)
-
-  next unless s.save
+  s = Scraping.create!(scraping)
 
   [
     {name: "スレッド_1"},
