@@ -16,16 +16,26 @@ ActiveRecord::Schema.define(version: 20131130053853) do
   create_table "boards", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "posted_at"
   end
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "board_id"
+    t.string   "voice_body"
+    t.string   "voice_name"
+    t.string   "voice_number"
+    t.string   "voice_id"
+    t.string   "posted_at"
   end
 
   create_table "scrapings", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "url"
   end
 
 end

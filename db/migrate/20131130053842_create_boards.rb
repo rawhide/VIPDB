@@ -3,6 +3,8 @@ class CreateBoards < ActiveRecord::Migration
     create_table :boards do |t|
 
       t.timestamps
+      t.string :name
+      t.string :posted_at
     end
   end
 end
